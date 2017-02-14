@@ -74,16 +74,113 @@ angular.module('confusionApp',[])
         ];
     }])
 
+    .controller('dishDetailController', ['$scope', function($scope) {
+        $scope.sortValue = '';
+
+        $scope.dish={
+            name:'Uthapizza',
+            image: 'images/uthapizza.png',
+            category: 'mains',
+            label:'Hot',
+            price:'4.99',
+            description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
+            comments: [
+                {
+                    rating:5,
+                    comment:"Imagine all the eatables, living in conFusion!",
+                    author:"John Lemon",
+                    date:"2012-10-16T17:57:28.556094Z"
+                },
+                {
+                    rating:4,
+                    comment:"Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
+                    author:"Paul McVites",
+                    date:"2014-09-05T17:57:28.556094Z"
+                },
+                {
+                    rating:3,
+                    comment:"Eat it, just eat it!",
+                    author:"Michael Jaikishan",
+                    date:"2015-02-13T17:57:28.556094Z"
+                },
+                {
+                    rating:4,
+                    comment:"Ultimate, Reaching for the stars!",
+                    author:"Ringo Starry",
+                    date:"2013-12-02T17:57:28.556094Z"
+                },
+                {
+                    rating:2,
+                    comment:"It's your birthday, we're gonna party!",
+                    author:"25 Cent",
+                    date:"2011-12-02T17:57:28.556094Z"
+                }
+            ]
+        }
+    }])
+
+    .controller('DishCommentController', ['$scope', function($scope) {
+
+        $scope.commentedForm = {
+            name: "",
+            rating: 5,
+            comment: "",
+            date: ""
+        };
+
+        $scope.submitComment = function () {
+
+            $scope.commentedForm.date = new Date().toISOString();
+
+            // Step 3: Push your comment into the dish's comment array
+            $scope.dish.comments.push({
+                rating: $scope.commentedForm.rating,
+                comment: $scope.commentedForm.comment,
+                author: $scope.commentedForm.name,
+                date: $scope.commentedForm.date
+            });
+
+            $scope.commentForm.$setPristine();
+            $scope.commentedForm = {
+                name: "",
+                rating: 5,
+                comment: "",
+                date: ""
+            };
+
+        }
+    }])
+
     .controller('ContactController', ['$scope', function ($scope) {
 
         $scope.feedback = {mychannel: "", firstName:"",
-                            lastName:"", agree:false, email:"" };
+            lastName:"", agree:false, email:"" };
+
+        var channels = [{value:"tel", label:"Tel."},
+            {value:"Email", label:"Email"}];
+        $scope.channels = channels;
+        $scope.invalidChannelSelection = false;
 
     }])
 
     .controller('FeedbackController', ['$scope', function ($scope) {
 
-    }])
+        $scope.sendFeedback = function () {
+            if ($scope.feedback.agree && ($scope.feedback.mychannel == "")) {
+                $scope.invalidChannelSelection = true;
+                console.error('invalid');
+            } else {
+                $scope.invalidChannelSelection = false;
+                $scope.feedback = {
+                    mychannel: "", firstName: "",
+                    lastName: "", agree: false, email: ""
+                };
+                $scope.feedback.mychannel = "";
+                $scope.feedbackForm.$setPristine();
+                console.info($scope.feedback);
+            }
+        };
 
+    }])
 
 ;
