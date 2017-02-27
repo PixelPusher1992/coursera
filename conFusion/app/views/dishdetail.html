@@ -2,8 +2,13 @@
         <div class="row row-content" ng-controller="dishDetailController">
             <div class="col-xs-12">
 
-                    <ul class="media-list">
-                        <li class="media">
+                    <div class="media-list">
+
+                        <button class="btn btn-xs btn-primary pull-right" type="button" ui-sref="app.menu">
+                            Back to Menu
+                        </button>
+
+                        <div class="media">
                             <div class="media-left media-middle">
                                 <a href="#">
                                     <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="Uthappizza">
@@ -16,8 +21,8 @@
                                 </h2>
                                 <p>{{dish.description}}</p>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
 
             </div>
             <div class="col-xs-9 col-xs-offset-1">
