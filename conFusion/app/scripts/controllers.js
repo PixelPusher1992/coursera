@@ -57,7 +57,6 @@ angular.module('confusionApp')
 
             $scope.commentedForm.date = new Date().toISOString();
 
-            // Step 3: Push your comment into the dish's comment array
             $scope.dish.comments.push({
                 rating: $scope.commentedForm.rating,
                 comment: $scope.commentedForm.comment,
@@ -75,6 +74,7 @@ angular.module('confusionApp')
 
         }
     }])
+
 
     .controller('ContactController', ['$scope', function ($scope) {
 
@@ -105,6 +105,18 @@ angular.module('confusionApp')
                 console.info($scope.feedback);
             }
         };
+
+    }])
+
+    .controller('IndexController', ['$scope', function ($scope) {
+
+    }])
+
+
+    .controller('AboutController', ['$scope', 'corporateFactory', function ($scope, corporateFactory) {
+
+        $scope.leaders = corporateFactory.getLeaders();
+        $scope.leader = corporateFactory.getLeader();
 
     }])
 

@@ -3,30 +3,36 @@
 angular.module('confusionApp',['ui.router'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
+
+            // route for the home page
             .state('app', {
                 url:'/',
                 views: {
                     'header': {
-                        templateUrl: 'views/header.html',
+                        templateUrl: 'views/header.html'
                     },
                     'content': {
-                        template: '<h1>Some Text</h1>',
-                        controller: 'IndexController'
+                        templateUrl : 'views/home.html',
+                        controller  : 'IndexController'
                     },
                     'footer': {
                         templateUrl: 'views/footer.html'
                     }
                 }
             })
+
+            // route for the aboutus page
             .state('app.aboutus', {
                 url: 'aboutus',
                 views: {
                     'content@': {
-                        template: '<h1>Some Text</h1>',
-                        controller: 'AboutController'
+                        templateUrl : 'views/aboutus.html',
+                        controller  : 'AboutController'
                     }
                 }
             })
+
+            // route for the contactus page
             .state('app.contactus', {
                 url: 'contactus',
                 views: {
@@ -36,6 +42,8 @@ angular.module('confusionApp',['ui.router'])
                     }
                 }
             })
+
+            // route for the menu page
             .state('app.menu', {
                 url: 'menu',
                 views: {
@@ -45,6 +53,8 @@ angular.module('confusionApp',['ui.router'])
                     }
                 }
             })
+
+            // route for the dishdetail page
             .state('app.dishdetail', {
                 url: 'menu/:id',
                 views: {
