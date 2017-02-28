@@ -36,10 +36,10 @@ angular.module('confusionApp')
 
     }])
 
-    .controller('dishDetailController', ['$scope', 'menuFactory', function($scope, menuFactory) {
+    .controller('dishDetailController', ['$scope', '$routeParams', 'menuFactory', function($scope, $routeParams, menuFactory) {
         $scope.sortValue = '';
 
-        $scope.dish = menuFactory.getDish(3);
+        $scope.dish = menuFactory.getDish(parseInt($routeParams.id,10));
     }])
 
     .controller('DishCommentController', ['$scope', function($scope) {
