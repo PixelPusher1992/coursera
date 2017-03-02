@@ -7,7 +7,13 @@ angular.module('confusionApp')
         $scope.tab = 1;
         $scope.filtText = '';
         $scope.showDetails = false;
-        $scope.dishes = menuFactory.getDishes();
+        $scope.dishes = {};
+        menuFactory.getDishes()
+            .then(
+                function (response) {
+                    $scope.dishes = response.data;
+                }
+            );
 
         $scope.toggleDetails = function () {
             return $scope.showDetails = !$scope.showDetails;
@@ -40,8 +46,13 @@ angular.module('confusionApp')
                                                 function($scope, $stateParams, menuFactory) {
         $scope.sortValue = '';
 
-        var dish = menuFactory.getDish(parseInt($stateParams.id,10));
-        $scope.dish = dish;
+        $scope.dish = {};
+        menuFactory.getDish(parseInt($stateParams.id,10))
+            .then(
+                function (response) {
+                    $scope.dish = response.data;
+                }
+            );
     }])
 
     .controller('DishCommentController', ['$scope', function($scope) {
@@ -113,7 +124,14 @@ angular.module('confusionApp')
 
         $scope.leader = corporateFactory.getLeader(3);
         $scope.promotion = menuFactory.getPromotion(0);
-        $scope.dish = menuFactory.getDish(0);
+
+        $scope.dish = {};
+        menuFactory.getDish(0)
+            .then(
+                function (response) {
+                    $scope.dish = response.data;
+                }
+            );
     }])
 
 
