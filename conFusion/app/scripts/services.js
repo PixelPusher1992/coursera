@@ -30,7 +30,7 @@ angular.module('confusionApp')
         var feedFactCont = {};
 
         feedFactCont.getFeedback = function () {
-            return $resource(baseURL + 'feedback/', null);
+            return $resource(baseURL + 'feedback/', null, {'update':{method:'PUT'}});
         };
 
 

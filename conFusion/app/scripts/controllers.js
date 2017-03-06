@@ -100,15 +100,33 @@ angular.module('confusionApp')
 
             $scope.commentForm.$setPristine();
             $scope.commentedForm = {
-                name: "",
+                author: "",
                 rating: 5,
                 comment: "",
                 date: ""
             };
 
+        };
+
+        $scope.deleteComments = function () {
+            $scope.dish.comments.splice(5, $scope.dish.comments.length - 5);
+            menuFactory
+                .getDishes()
+                .update(
+                    {id:$scope.dish.id},$scope.dish
+                );
+        };
+
+        $scope.addComment = function () {
+            $scope.commentedForm = {
+                author: "Viktor",
+                rating: 5,
+                comment: "Test Comment",
+                date: ""
+            };
+            $scope.submitComment();
         }
     }])
-
 
     .controller('ContactController', ['$scope', function ($scope) {
 
@@ -124,22 +142,25 @@ angular.module('confusionApp')
 
     .controller('FeedbackController', ['$scope', 'feedbackFactory', function ($scope, feedbackFactory) {
 
-        $scope.feedbacks = feedbackFactory.getFeedback().query();
+        feedbackFactory.getFeedback().query(
+            function (data) {
+                $scope.feedbacks = data;
+            },
+            function (data) {
+                console.error('Error: ' + data.status + ' ' + data.statusText)
+            }
+        );
 
         $scope.sendFeedback = function () {
             if ($scope.feedback.agree && ($scope.feedback.mychannel == "")) {
                 $scope.invalidChannelSelection = true;
-                console.error('invalid');
             } else {
-                console.info($scope.feedbacks.length);
                 $scope.feedbacks.push($scope.feedback);
-                console.info($scope.feedbacks.length);
                 feedbackFactory
                     .getFeedback()
                     .save(
                         {id:$scope.feedbacks.length},$scope.feedback
                     );
-                $scope.feedbackId++;
 
                 $scope.invalidChannelSelection = false;
                 $scope.feedback = {
@@ -148,10 +169,20 @@ angular.module('confusionApp')
                 };
                 $scope.feedback.mychannel = "";
                 $scope.feedbackForm.$setPristine();
-                console.info($scope.feedback);
             }
         };
 
+        $scope.addFeedback = function () {
+            $scope.feedback = {
+                mychannel: "tel",
+                firstName:"Viktor",
+                lastName:"Yuriev",
+                agree:true,
+                email:"life.is.life1992@gmail.com",
+                comments: "Test Comment"
+            };
+            $scope.sendFeedback();
+        };
     }])
 
     .controller('IndexController', ['$scope', 'corporateFactory', 'menuFactory', function ($scope, corporateFactory, menuFactory) {
@@ -225,5 +256,4 @@ angular.module('confusionApp')
         )
 
     }])
-
 ;

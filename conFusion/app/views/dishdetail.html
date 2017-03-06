@@ -141,7 +141,22 @@
                         </div>
                     </div>
 
-                    <p>Task 2: You need to validate that the user name and comments are entered</p>
+                    <div class="form-group" ng-if="dish.comments.length > 5">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-danger" ng-click="deleteComments()">
+                                Delete comments
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-success" ng-click="addComment()">
+                                Add comment
+                            </button>
+                        </div>
+                    </div>
+
                 </form>
             </div>
 
