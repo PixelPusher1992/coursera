@@ -61,7 +61,7 @@
                         <blockquote>
                             <p>{{commentedForm.rating}} Stars</p>
                             <p>{{commentedForm.comment}}</p>
-                            <footer>{{commentedForm.name}} {{commentedForm.date | date:mediumDate}}</footer>
+                            <footer>{{commentedForm.author}} {{commentedForm.date | date:mediumDate}}</footer>
                         </blockquote>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                         </label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="dishcommentname" placeholder="Name"
-                                ng-model="commentedForm.name" name="commentname" required>
+                                ng-model="commentedForm.author" name="commentname" required>
                             <span ng-show="commentForm.commentname.$error.required &&
                                     !commentForm.commentname.$pristine" class="help-block" >
                                 Your name is required!

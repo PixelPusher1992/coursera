@@ -29,7 +29,12 @@
         </div>
 
 
-        <div class="row row-content">
+        <div ng-if="!showPromotion">
+            <h3>
+                {{message}}
+            </h3>
+        </div>
+        <div class="row row-content" ng-if="showPromotion">
             <div class="col-xs-12 col-sm-3">
                 <p style="padding:20px;"></p>
                 <h3 align=center>This Month's Promotions</h3>
@@ -52,7 +57,12 @@
             </div>
         </div>
 
-        <div class="row row-content">
+        <div ng-if="!showLeader">
+            <h3>
+                {{message}}
+            </h3>
+        </div>
+        <div class="row row-content" ng-if="showLeader">
             <div class="col-xs-12 col-sm-3 col-sm-push-9">
                 <p style="padding:20px;"></p>
                 <h3 align=center>Meet our Culinary Specialists</h3>

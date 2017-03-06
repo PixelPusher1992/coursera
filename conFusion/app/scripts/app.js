@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('confusionApp',['ui.router', 'ngResource'])
-    .config(function ($stateProvider, $urlRouterProvider) {
-        $stateProvider
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+        $locationProvider.hashPrefix('');
 
+        $stateProvider
             // route for the home page
             .state('app', {
                 url:'/',
@@ -67,6 +68,5 @@ angular.module('confusionApp',['ui.router', 'ngResource'])
         ;
 
         $urlRouterProvider.otherwise('/');
-
     })
 ;
