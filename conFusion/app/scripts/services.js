@@ -37,4 +37,24 @@ angular.module('confusionApp')
         return feedFactCont;
     }])
 
+    .animation('.test-js-animation', [function() {
+        return {
+            // make note that other events (like addClass/removeClass)
+            // have different function input parameters
+            enter: function(element, doneFn) {
+                jQuery(element).fadeIn(300, doneFn);
+
+                // remember to call doneFn so that angular
+                // knows that the animation has concluded
+            },
+
+            move: function(element, doneFn) {
+                jQuery(element).fadeIn(300, doneFn);
+            },
+
+            leave: function(element, doneFn) {
+                jQuery(element).fadeOut(300, doneFn);
+            }
+        }
+    }]);
 ;

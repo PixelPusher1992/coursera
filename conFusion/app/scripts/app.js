@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('confusionApp',['ui.router', 'ngResource'])
+angular.module('confusionApp',['ui.router', 'ngResource', 'ngAnimate'])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $locationProvider.hashPrefix('');
 
@@ -69,4 +69,24 @@ angular.module('confusionApp',['ui.router', 'ngResource'])
 
         $urlRouterProvider.otherwise('/');
     })
+    // .animation('.comment', [function () {
+    //     return {
+    //         // make note that other events (like addClass/removeClass)
+    //         // have different function input parameters
+    //         enter: function(element, doneFn) {
+    //             jQuery(element).fadeIn(3000, doneFn);
+    //
+    //             // remember to call doneFn so that AngularJS
+    //             // knows that the animation has concluded
+    //         },
+    //
+    //         move: function(element, doneFn) {
+    //             jQuery(element).fadeIn(3000, doneFn);
+    //         },
+    //
+    //         leave: function(element, doneFn) {
+    //             jQuery(element).fadeOut(3000, doneFn);
+    //         }
+    //     }
+    // }])
 ;
